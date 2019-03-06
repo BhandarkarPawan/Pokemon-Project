@@ -1,0 +1,21 @@
+./hadoop-daemon.sh start namenode
+./hadoop-daemon.sh start datanode
+./yarn-daemon.sh start resourcemanager
+./yarn-daemon.sh start nodemanager
+./mr-jobhistory-daemon.sh start historyserver
+
+
+schematool -dbType derby -initSchema
+hadoop namenode -format
+
+
+# Used to start the hive server (required for python)
+hive --service hiveserver2 --hiveconf hive.server2.thrift.port=10000 --hiveconf hive.root.logger=INFO,console
+
+
+# This command is used to create a Table according to our Pokemon Data
+create table pokemon(Number int, Name String, Type1 String, Type2 String, Total String, HP int, Attack int, Defense int, Sp_Atk int, Sp_Def int, Speed int, Generation int, Legendary Boolean) row format delimited fields terminated by ','
+
+
+# Used to load data from local system into HIVE
+load data local inpath 'Pokemon.txt' into table Pokemon
