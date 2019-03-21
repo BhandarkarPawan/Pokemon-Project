@@ -23,9 +23,9 @@ while(True):
         print("Loading done")
         break
 
-len(pokemon)
 
 # DO NOT Modify the following code. Start work from here:
-# TODO: Use Seaborn and Matplotlib to analyse the dataset.
-# Once you are done, I will swap the pandas queries for hive queries.
+
 df = pd.read_csv('Pokemon.csv')
+
+# Your code here
